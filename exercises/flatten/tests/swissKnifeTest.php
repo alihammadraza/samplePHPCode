@@ -8,12 +8,13 @@
  */
 
 $pathFromPHPUnit=dirname(__FILE__);
-require_once($pathFromPHPUnit."/../../config/config.php");
+require_once('/../../config/config.php');
+use exercises\flatten\services\swissKnife;
 
 class swissKnifeTest extends PHPUnit_Framework_TestCase
 {
     public function testFlattenArray(){
-        $testObject= new \exercises\flatten\services\swissKnife();
+        $testObject= new swissKnife();
         $arrayInput= array(11,22,array(array(33,44,array(55,66,77),array(array(array(array(array(array(88,99)))))),00,33)));
         $arrayOutput=$testObject->flattenArray($arrayInput);
         $expectedOutputShouldBe= array(11,22,33,44,55,66,77,88,99,00,33);
@@ -22,7 +23,7 @@ class swissKnifeTest extends PHPUnit_Framework_TestCase
     }
 
     public function testInvalidArrayInput(){
-        $testObject= new \exercises\flatten\services\swissKnife();
+        $testObject= new swissKnife();
         $this->setExpectedException("Exception");
         $arrayInput= array(11,22,array(array(33,44,"A",array(55,66,77),array(array(array(array(array(array(88,99)))))),00,33)));
         $arrayOutput=$testObject->flattenArray($arrayInput);

@@ -6,6 +6,7 @@
  */
 
 namespace exercises\gps\services;
+use exercises\gps\entities\gpsPoint;
 
 
 /**
@@ -25,7 +26,7 @@ class distanceBetweenTwoGPSPoints
      * @return float , distance rounded to metres
      * @throws \Exception
      */
-    public static function getDistanceBetweenTwoPoints(\exercises\gps\entities\gpsPoint $gpsPoint1, \exercises\gps\entities\gpsPoint $gpsPoint2)
+    public static function getDistanceBetweenTwoPoints(gpsPoint $gpsPoint1, gpsPoint $gpsPoint2)
     {
         $latitudePointA = deg2rad($gpsPoint1->getLatitude());
         $longitudePointA = deg2rad($gpsPoint1->getLongitude());

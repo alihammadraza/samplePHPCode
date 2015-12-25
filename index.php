@@ -6,14 +6,18 @@
  */
 
 
-include('exercises/config/config.php');
+require_once('exercises/config/config.php');
+use exercises\gps\entities\gpsPoint;
+use exercises\gps\services\distanceBetweenTwoGPSPoints;
+use exercises\gps\services\customersLivingWithinASpecifiedDistance;
+
 
 echo "<h1> Customers Living within 100000 metres from 53.3381985,-6.2592576 </h1>";
-$gpsPoint['A']= new \exercises\gps\entities\gpsPoint();
+$gpsPoint['A']= new gpsPoint();
 $gpsPoint['A']->setLatitude(53.3381985);
 $gpsPoint['A']->setLongitude(-6.2592576);
 
-$findUsersLivingWithinDistanceFromPointA= new \exercises\gps\services\customersLivingWithinASpecifiedDistance() ;
+$findUsersLivingWithinDistanceFromPointA= new customersLivingWithinASpecifiedDistance() ;
 $findUsersLivingWithinDistanceFromPointA->setCoordinatesOfPointA($gpsPoint['A']);
 $findUsersLivingWithinDistanceFromPointA->setMaximumAllowedDistanceInMetres(100000);
 $findUsersLivingWithinDistanceFromPointA->setLocationOfJSONFileContainingCustomerData("exercises/gps/data/gistfile1.txt");
@@ -22,13 +26,13 @@ echo "<br/><br/><br/><br/>";
 
 
 echo "<h1> Calculating distance in metres between gpsPoint 89,10 and gpsPoint 10,10 </h1>";
-$gpsPoint['A']= new \exercises\gps\entities\gpsPoint();
+$gpsPoint['A']= new gpsPoint();
 $gpsPoint['A']->setLatitude(89);
 $gpsPoint['A']->setLongitude(10);
-$gpsPoint['B']= new \exercises\gps\entities\gpsPoint();
+$gpsPoint['B']= new gpsPoint();
 $gpsPoint['B']->setLatitude(10);
 $gpsPoint['B']->setLongitude(10);
-echo \exercises\gps\services\distanceBetweenTwoGPSPoints::getDistanceBetweenTwoPoints($gpsPoint['A'],$gpsPoint['B']) . " metres";
+echo distanceBetweenTwoGPSPoints::getDistanceBetweenTwoPoints($gpsPoint['A'],$gpsPoint['B']) . " metres";
 echo "<br/><br/><br/><br/>";
 
 
@@ -42,4 +46,3 @@ echo "<br/><br/><br/><br/>";
 
 
 ?>
-
