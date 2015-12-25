@@ -6,7 +6,7 @@
  */
 
 namespace exercises\gps\services;
-
+use exercises\gps\entities\gpsPoint;
 
 /**
  * Class customersLivingWithinASpecifiedDistance
@@ -57,7 +57,7 @@ class customersLivingWithinASpecifiedDistance
      * @param \exercises\gps\entities\gpsPoint $gpsPointA
      *
      */
-    public function setCoordinatesOfPointA(\exercises\gps\entities\gpsPoint $gpsPointA)
+    public function setCoordinatesOfPointA(gpsPoint $gpsPointA)
     {
         $this->gpsPointA = $gpsPointA;
     }
@@ -126,7 +126,7 @@ class customersLivingWithinASpecifiedDistance
         $customers = $this->getCustomerDataFromJSONFile();
         $filteredCustomers = array();
         foreach ($customers as $key => $customer) {
-            $gpsPointB = new \exercises\gps\entities\gpsPoint();
+            $gpsPointB = new gpsPoint();
             $gpsPointB->setLatitude($customer['latitude']);
             $gpsPointB->setLongitude($customer['longitude']);
             $calculatedDistanceBetweenPointBAndA = distanceBetweenTwoGPSPoints::getDistanceBetweenTwoPoints($this->gpsPointA, $gpsPointB);
